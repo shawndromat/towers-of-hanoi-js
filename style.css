@@ -1,0 +1,47 @@
+#Hanoi{
+  width: 750;
+  display: block;
+  margin: 0 auto;
+}
+
+.tower{
+  width: 250px;
+  height: 400px;
+  float: left;
+}
+
+.pole{
+  height: 400px;
+  width: 25px;
+  margin: 0 auto;
+  z-index:-1;
+  background-color: Brown;
+}
+
+.disc{
+  width: 100px;
+  height: 50px;
+  margin: 0 auto;
+
+  position: relative;
+
+
+  background-color: green;
+}
+
+
+[data-size="2"]{
+  width: 150px;
+}
+
+[data-size="3"]{
+  width: 200px;
+}
+
+[data-id="2"] .disc {
+  background-color: red;
+}
+
+
+
+

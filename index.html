@@ -3,6 +3,7 @@
   <script src="underscore.js"></script>
   <script src="jquery.js"></script>
   <script src="hanoi.js"></script>
+  <script src="hanoiUI.js"></script>
 
   <link rel="stylesheet" href="style.css" type="text/css">
 </head>
@@ -26,9 +27,10 @@
 
   <script>
 
-  var Game = new Hanoi.Game();
-  Game.renderDiscs();
-  Game.setUpHandlers();
+  var game = new Hanoi.Game();
+	var UI = new Hanoi.UI(game);
+  UI.renderDiscs();
+  UI.setUpHandlers();
   </script>
 </body>
 </html>

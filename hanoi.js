@@ -1,8 +1,6 @@
 (function (root) {
   var Hanoi = root.Hanoi = (root.Hanoi || {});
 
-
-
   var Game = Hanoi.Game = function () {
     this.towers = [[3, 2, 1], [], []];
     this.startTowerIdx = undefined;
@@ -28,46 +26,21 @@
     }
   };
 
-  Game.prototype.move = function (startTowerIdx, endTowerIdx) {
+  Game.prototype.move = function (startTowerIdx, endTowerIdx, callback) {
     if (this.isValidMove(startTowerIdx, endTowerIdx)) {
-      this.towers[endTowerIdx].push(this.towers[startTowerIdx].pop());
-      $disc = $("[data-id='"+(startTowerIdx)+"'] > .disc")[0];
-      console.log($disc);
-      $disc.remove();
-      $("[data-id='"+(endTowerIdx)+"'] .pole").after($disc);
-      this.renderDiscs();
+      this.towers[endTowerIdx].push(this.towers[startTowerIdx].pop());  
+			callback();    
       return true;
     } else {
       return false;
     }
   };
 
-  // Game.prototype.run = function () {
-  //   var game = this;
-  //
-  //   READER.question("Enter a starting tower: ",function (start) {
-  //     var startTowerIdx = parseInt(start);
-  //     READER.question("Enter an ending tower: ", function (end) {
-  //       var endTowerIdx = parseInt(end);
-  //       game.takeTurn(startTowerIdx,endTowerIdx);
-  //     });
-  //   });
-  // };
 
-  Game.prototype.renderDiscs = function () {
-    console.log("Rendering Discs..")
-    for(var i = 0; i < this.towers.length; i++) {
-      var offset = this.towers[i].length * -50;
-      // $('[data-id="1"] .disc').css('top', '-50px');
-      $('[data-id="' + (i) + '"] .disc').css('top', offset + 'px');
-    }
-  }
-
-  Game.prototype.takeTurn = function (start,end){
+  Game.prototype.takeTurn = function (start,end, callback){
     var game = this;
 
-    console.log(start+":"+end)
-    if (game.move(start,end)) {
+    if (game.move(start,end, callback)) {
       console.log(game.towers);
     } else {
       console.log("Invalid move!")
@@ -78,21 +51,5 @@
     }
   }
 
-  Game.prototype.setUpHandlers = function () {
-    var game = this;
-
-    $('.tower').click(function () {
-      if (game.startTowerIdx !== undefined) {
-        game.takeTurn(game.startTowerIdx, parseInt($(this).data('id')));
-        game.startTowerIdx = undefined;
-      } else {
-        game.startTowerIdx = parseInt($(this).data('id'));
-        console.log(game.startTowerIdx);
-      }
-    });
-  }
-
-
 })(this);
 
-// this.Hanoi.Game is a constructor function, so we instantiate a new object, then run it.
